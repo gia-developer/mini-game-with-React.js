@@ -1,6 +1,6 @@
 import { Component } from "react";
 import data from "./data.json";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 const elegidosLetter = [ ];
 const elegidos = [ ];
@@ -49,8 +49,6 @@ class Eleccion extends Component {
             Swal.fire( "fin" );
         }
 
-        console.log(elegidos.length);
-
         elegidosLetter.push( letter );
         elegidos.push( this.state.countClick + letter )
     }
@@ -64,8 +62,9 @@ class Eleccion extends Component {
             <>
                 <h2>{ data[count].id }° pregunta</h2>
                 <p>{ data[count].historia }</p>
-                <button data-option={ key( optionSelect )[0] } onClick={ this.handleClick }>{ optionSelect.a }</button>
-                <button data-option={ key( optionSelect )[1] } onClick={ this.handleClick }>{ optionSelect.b }</button>
+
+                <button data-option={ key( optionSelect )[0] } data-text={ optionSelect.a }onClick={ this.handleClick }>{ optionSelect.a }</button>
+                <button data-option={ key( optionSelect )[1] } data-text={ optionSelect.b } onClick={ this.handleClick }>{ optionSelect.b }</button>
                 
                 <h3>Respuesta anterior:</h3>
                 <ul>{
