@@ -47,7 +47,7 @@ class Option extends Component {
         let count = this.state.count;
         const optionSelect = data[count].opciones;
         const key = Object.keys;
-
+        
         return (
             <>
                 <Question data={ data[count] } />
@@ -55,6 +55,7 @@ class Option extends Component {
                 <button data-option={ key( optionSelect )[0] } data-text={ optionSelect.a }onClick={ this.handleClick }>{ optionSelect.a }</button>
                 <button data-option={ key( optionSelect )[1] } data-text={ optionSelect.b } onClick={ this.handleClick }>{ optionSelect.b }</button>
                 
+                <h3>Última respuesta: { [ ...elegidos ].pop( ) }</h3>
                 <Selected array={ elegidos } />
             </>
         )

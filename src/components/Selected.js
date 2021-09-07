@@ -4,7 +4,7 @@ class Options extends Component {
     render( ) {
         return (
             <>
-                <h3>Respuesta anterior:</h3>
+                <h4>Respuestas anteriores:</h4>
                 <ul>{
                     this.props.array.map( ( element, i ) => {
                         return ( <li key={ i }>{ element }</li> )
