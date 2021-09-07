@@ -1,11 +1,12 @@
 import { Component } from "react";
 import data from "./data.json";
 import Swal from "sweetalert2";
+import Selected from "./Selected";
 
 const elegidosLetter = [ ];
 const elegidos = [ ];
 
-class Eleccion extends Component {
+class Option extends Component {
     constructor( props ) {
         super( props );
         this.state = {
@@ -66,15 +67,10 @@ class Eleccion extends Component {
                 <button data-option={ key( optionSelect )[0] } data-text={ optionSelect.a }onClick={ this.handleClick }>{ optionSelect.a }</button>
                 <button data-option={ key( optionSelect )[1] } data-text={ optionSelect.b } onClick={ this.handleClick }>{ optionSelect.b }</button>
                 
-                <h3>Respuesta anterior:</h3>
-                <ul>{
-                    elegidos.map( ( element, i ) => {
-                        return ( <li key={ i }>{ element }</li> )
-                    } )
-                }</ul>
+                <Selected array={ elegidos } />
             </>
         )
     }
 }
 
-export default Eleccion;
+export default Option;
