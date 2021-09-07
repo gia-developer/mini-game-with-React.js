@@ -27,29 +27,17 @@ class Option extends Component {
             this.setState( { option: letter, countClick: this.state.countClick + 1 } )
 
             if( letter === "a" && countIncrement + 1 === 1 ) {
-                this.setState( {
-                    count: countIncrement + 1,
-                } )
+                this.setState( { count: countIncrement + 1 } )
             } else if( letter === "a" && lastLetter === "a" ) {
-                this.setState( {
-                    count: countIncrement + 2
-                } )
+                this.setState( { count: countIncrement + 2 } )
             } else if( letter === "a" && lastLetter === "b" ) {
-                this.setState( {
-                    count: countIncrement + 1
-                } )
+                this.setState( { count: countIncrement + 1 } )
             } else if( letter === "b" && lastLetter === "a" ) {
-                this.setState( {
-                    count: countIncrement + 3
-                } )
+                this.setState( { count: countIncrement + 3 } )
             } else if( letter === "b" ) {
-                this.setState( {
-                    count: countIncrement + 2
-                } )
+                this.setState( { count: countIncrement + 2 } )
             }
-        } else {
-            Swal.fire( "Fin del juego" );
-        }
+        } else Swal.fire( "Fin del juego" );
 
         elegidosLetter.push( letter );
         elegidos.push( this.state.countClick + letter )
