@@ -1,6 +1,8 @@
 import { Component } from "react";
 import data from "./data.json";
+import Swal from 'sweetalert2';
 
+const elegidosLetter = [ ];
 const elegidos = [ ];
 
 class Eleccion extends Component {
@@ -9,30 +11,54 @@ class Eleccion extends Component {
         this.state = {
             option: "",
             count: 0,
-            select: ""
+            countClick: 1
         }
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick( e ) {
-        this.setState( {
-            option: e.target.dataset.option,
-            count: this.state.count + 1,
-            select: this.state.count + 1 + `${ e.target.dataset.option }`
-        } )
-        console.log(e.target.dataset.option);
-        console.log(this.state.count + 1);
-        console.log(this.state.select);
-    }
+        const letter = e.target.dataset.option;
+        const countIncrement = this.state.count;
+        const lastLetter = elegidosLetter.pop();
 
-    componentDidUpdate( ) {
-        elegidos.push(this.state.select);
+        if( elegidos.length < 4 ) {
+            this.setState( { option: letter, countClick: this.state.countClick + 1 } )
+
+            if( letter === "a" && countIncrement + 1 === 1 ) {
+                this.setState( {
+                    count: countIncrement + 1,
+                } )
+            } else if( letter === "a" && lastLetter === "a" ) {
+                this.setState( {
+                    count: countIncrement + 2
+                } )
+            } else if( letter === "a" && lastLetter === "b" ) {
+                this.setState( {
+                    count: countIncrement + 1
+                } )
+            } else if( letter === "b" && lastLetter === "a" ) {
+                this.setState( {
+                    count: countIncrement + 3
+                } )
+            } else if( letter === "b" ) {
+                this.setState( {
+                    count: countIncrement + 2
+                } )
+            }
+        } else {
+            Swal.fire( "fin" );
+        }
+
+        console.log(elegidos.length);
+
+        elegidosLetter.push( letter );
+        elegidos.push( this.state.countClick + letter )
     }
 
     render( ) {
         let count = this.state.count;
-        const key = Object.keys;
         const optionSelect = data[count].opciones;
+        const key = Object.keys;
 
         return (
             <>
@@ -40,7 +66,7 @@ class Eleccion extends Component {
                 <p>{ data[count].historia }</p>
                 <button data-option={ key( optionSelect )[0] } onClick={ this.handleClick }>{ optionSelect.a }</button>
                 <button data-option={ key( optionSelect )[1] } onClick={ this.handleClick }>{ optionSelect.b }</button>
-
+                
                 <h3>Respuesta anterior:</h3>
                 <ul>{
                     elegidos.map( ( element, i ) => {
