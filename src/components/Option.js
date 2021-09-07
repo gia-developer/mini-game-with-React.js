@@ -2,6 +2,7 @@ import { Component } from "react";
 import data from "./data.json";
 import Swal from "sweetalert2";
 import Selected from "./Selected";
+import Question from "./Question";
 
 const elegidosLetter = [ ];
 const elegidos = [ ];
@@ -21,7 +22,7 @@ class Option extends Component {
         const letter = e.target.dataset.option;
         const countIncrement = this.state.count;
         const lastLetter = elegidosLetter.pop();
-
+ 
         if( elegidos.length < 4 ) {
             this.setState( { option: letter, countClick: this.state.countClick + 1 } )
 
@@ -47,7 +48,7 @@ class Option extends Component {
                 } )
             }
         } else {
-            Swal.fire( "fin" );
+            Swal.fire( "Fin del juego" );
         }
 
         elegidosLetter.push( letter );
@@ -61,8 +62,7 @@ class Option extends Component {
 
         return (
             <>
-                <h2>{ data[count].id }° pregunta</h2>
-                <p>{ data[count].historia }</p>
+                <Question data={ data[count] } />
 
                 <button data-option={ key( optionSelect )[0] } data-text={ optionSelect.a }onClick={ this.handleClick }>{ optionSelect.a }</button>
                 <button data-option={ key( optionSelect )[1] } data-text={ optionSelect.b } onClick={ this.handleClick }>{ optionSelect.b }</button>
