@@ -12,13 +12,13 @@ Mini App realizada con React.
 
 <h2>También incluye las siguientes librerías</h2>
 
-● SweetAler2 <br />
+● SweetAlert2 <br />
 ● Animate.css
 
 <h2>¡Además es Mobile First!</h2>
 ● Mobile: hasta 767px <br />
 ● Tablet: hasta 1023px <br />
-● Desktop: incluye se adapta a 1920px 😎
+● Desktop: incluye 1920px 😎
 
 <h2>Preview de la App</h2>
 
