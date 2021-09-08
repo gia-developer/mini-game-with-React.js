@@ -7,8 +7,8 @@ import Header from "./Header";
 import "../index.css";
 import "animate.css"
 
-const elegidosLetter = [ ];
-const elegidos = [ ];
+const choosenLetter = [ ];
+const choosen = [ ];
 
 class Option extends Component {
     constructor( props ) {
@@ -24,9 +24,9 @@ class Option extends Component {
     handleClick( e ) {
         const letter = e.target.dataset.option;
         const countIncrement = this.state.count;
-        const lastLetter = elegidosLetter.pop();
+        const lastLetter = choosenLetter.pop();
  
-        if( elegidos.length < 4 ) {
+        if( choosen.length < 4 ) {
             this.setState( { option: letter, countClick: this.state.countClick + 1 } )
 
             if( letter === "a" && countIncrement + 1 === 1 ) {
@@ -52,8 +52,8 @@ class Option extends Component {
             })
         }
 
-        elegidosLetter.push( letter );
-        elegidos.push( this.state.countClick + letter )
+        choosenLetter.push( letter );
+        choosen.push( this.state.countClick + letter )
     }
 
     render( ) {
@@ -70,8 +70,8 @@ class Option extends Component {
                         <button data-option={ key( optionSelect )[0] } data-text={ optionSelect.a }onClick={ this.handleClick }>{ optionSelect.a }</button>
                         <button data-option={ key( optionSelect )[1] } data-text={ optionSelect.b } onClick={ this.handleClick }>{ optionSelect.b }</button>
                     </div>
-                    <h3>Última respuesta: { [ ...elegidos ].pop( ) }</h3>
-                    <Selected array={ elegidos } />
+                    <h3>Última respuesta: { [ ...choosen ].pop( ) }</h3>
+                    <Selected array={ choosen } />
                 </div>
             </>
         )
