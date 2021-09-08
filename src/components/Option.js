@@ -1,8 +1,11 @@
 import { Component } from "react";
 import data from "./data.json";
 import Swal from "sweetalert2";
-import Selected from "./Selected";
+import Selected from "./List";
 import Question from "./Question";
+import Header from "./Header";
+import "../index.css";
+import "animate.css"
 
 const elegidosLetter = [ ];
 const elegidos = [ ];
@@ -37,7 +40,17 @@ class Option extends Component {
             } else if( letter === "b" ) {
                 this.setState( { count: countIncrement + 2 } )
             }
-        } else Swal.fire( "Fin del juego" );
+        } else {
+            Swal.fire({
+                title: 'Fin del juego',
+                showClass: {
+                  popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                  popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
+        }
 
         elegidosLetter.push( letter );
         elegidos.push( this.state.countClick + letter )
@@ -50,13 +63,16 @@ class Option extends Component {
         
         return (
             <>
-                <Question data={ data[count] } />
-
-                <button data-option={ key( optionSelect )[0] } data-text={ optionSelect.a }onClick={ this.handleClick }>{ optionSelect.a }</button>
-                <button data-option={ key( optionSelect )[1] } data-text={ optionSelect.b } onClick={ this.handleClick }>{ optionSelect.b }</button>
-                
-                <h3>Última respuesta: { [ ...elegidos ].pop( ) }</h3>
-                <Selected array={ elegidos } />
+                <Header />
+                <div id="content">
+                    <Question data={ data[count] } />
+                    <div id="btn">
+                        <button data-option={ key( optionSelect )[0] } data-text={ optionSelect.a }onClick={ this.handleClick }>{ optionSelect.a }</button>
+                        <button data-option={ key( optionSelect )[1] } data-text={ optionSelect.b } onClick={ this.handleClick }>{ optionSelect.b }</button>
+                    </div>
+                    <h3>Última respuesta: { [ ...elegidos ].pop( ) }</h3>
+                    <Selected array={ elegidos } />
+                </div>
             </>
         )
     }

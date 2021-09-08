@@ -7,7 +7,7 @@ class Options extends Component {
                 <h4>Respuestas anteriores:</h4>
                 <ul>{
                     this.props.array.map( ( element, i ) => {
-                        return ( <li key={ i }>{ element }</li> )
+                        return ( <li key={ i } class="list">{ element }</li> )
                     } )
                 }</ul>
             </>
