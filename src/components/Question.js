@@ -4,7 +4,7 @@ class Question extends Component {
     render( ) {
         return (
             <>
-                <h2>{ this.props.data.id }° pregunta</h2>
+                <h2>{ this.props.data.id.toUpperCase( ) }° pregunta</h2>
                 <p class="text">{ this.props.data.historia }</p>
             </>
         )

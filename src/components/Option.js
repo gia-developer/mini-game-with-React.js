@@ -29,15 +29,15 @@ class Option extends Component {
         if( choosen.length < 4 ) {
             this.setState( { option: letter, countClick: this.state.countClick + 1 } )
 
-            if( letter === "a" && countIncrement + 1 === 1 ) {
+            if( letter === "A" && countIncrement + 1 === 1 ) {
                 this.setState( { count: countIncrement + 1 } )
-            } else if( letter === "a" && lastLetter === "a" ) {
+            } else if( letter === "A" && lastLetter === "A" ) {
                 this.setState( { count: countIncrement + 2 } )
-            } else if( letter === "a" && lastLetter === "b" ) {
+            } else if( letter === "A" && lastLetter === "B" ) {
                 this.setState( { count: countIncrement + 1 } )
-            } else if( letter === "b" && lastLetter === "a" ) {
+            } else if( letter === "B" && lastLetter === "A" ) {
                 this.setState( { count: countIncrement + 3 } )
-            } else if( letter === "b" ) {
+            } else if( letter === "B" ) {
                 this.setState( { count: countIncrement + 2 } )
             }
         } else {
@@ -49,7 +49,7 @@ class Option extends Component {
                 hideClass: {
                   popup: 'animate__animated animate__fadeOutUp'
                 }
-            })
+            } )
         }
 
         choosenLetter.push( letter );
@@ -59,7 +59,8 @@ class Option extends Component {
     render( ) {
         let count = this.state.count;
         const optionSelect = data[count].opciones;
-        const key = Object.keys;
+        const optionOne = Object.keys( optionSelect )[0].toUpperCase( );
+        const optionTwo = Object.keys( optionSelect )[1].toUpperCase( );
         
         return (
             <>
@@ -67,8 +68,8 @@ class Option extends Component {
                 <div id="content">
                     <Question data={ data[count] } />
                     <div id="btn">
-                        <button data-option={ key( optionSelect )[0] } data-text={ optionSelect.a }onClick={ this.handleClick }>{ optionSelect.a }</button>
-                        <button data-option={ key( optionSelect )[1] } data-text={ optionSelect.b } onClick={ this.handleClick }>{ optionSelect.b }</button>
+                        <button data-option={ optionOne } data-text={ optionSelect.a }onClick={ this.handleClick }>{ optionOne + ". " + optionSelect.a }</button>
+                        <button data-option={ optionTwo } data-text={ optionSelect.b } onClick={ this.handleClick }>{ optionTwo + ". " + optionSelect.b }</button>
                     </div>
                     <h3>Última respuesta: { [ ...choosen ].pop( ) }</h3>
                     <Selected array={ choosen } />
