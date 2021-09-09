@@ -19,12 +19,12 @@ export default class Option extends Component {
 
     handleClick( e ) {
         const letter = e.target.value;
+        choosenLetter.push( letter );
         const countIncrement = this.state.count;
         const lastLetter = [...choosenLetter].pop();
-        choosenLetter.push( letter );
         choosen.push( this.state.countClick + letter );
-        
-        if( choosen.length < 5 ) {
+
+        if( this.state.countClick < 5 ) {
             this.setState( { option: letter, countClick: this.state.countClick + 1 } )
 
             if( letter === "A" && countIncrement + 1 === 1 || letter === "A" && lastLetter === "B") this.setState( { count: countIncrement + 1 } )
