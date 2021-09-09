@@ -7,17 +7,12 @@ import Header from "./Header";
 import "../index.css";
 import "animate.css"
 
-const choosenLetter = [ ];
-const choosen = [ ];
+const choosenLetter = [ ], choosen = [ ];
 
-class Option extends Component {
+export default class Option extends Component {
     constructor( props ) {
         super( props );
-        this.state = {
-            option: "",
-            count: 0,
-            countClick: 1
-        }
+        this.state = { option: "", count: 0, countClick: 1 }
         this.handleClick = this.handleClick.bind(this);
     }
 
@@ -29,17 +24,9 @@ class Option extends Component {
         if( choosen.length < 4 ) {
             this.setState( { option: letter, countClick: this.state.countClick + 1 } )
 
-            if( letter === "A" && countIncrement + 1 === 1 ) {
-                this.setState( { count: countIncrement + 1 } )
-            } else if( letter === "A" && lastLetter === "A" ) {
-                this.setState( { count: countIncrement + 2 } )
-            } else if( letter === "A" && lastLetter === "B" ) {
-                this.setState( { count: countIncrement + 1 } )
-            } else if( letter === "B" && lastLetter === "A" ) {
-                this.setState( { count: countIncrement + 3 } )
-            } else if( letter === "B" ) {
-                this.setState( { count: countIncrement + 2 } )
-            }
+            if( letter === "A" && countIncrement + 1 === 1 || letter === "A" && lastLetter === "B" ) this.setState( { count: countIncrement + 1 } )
+            else if( letter === "A" && lastLetter === "A" || letter === "B" ) this.setState( { count: countIncrement + 2 } )
+            else if( letter === "B" && lastLetter === "A" ) this.setState( { count: countIncrement + 3 } )
         } else {
             Swal.fire({
                 title: 'Fin del juego',
@@ -78,5 +65,3 @@ class Option extends Component {
         )
     }
 }
-
-export default Option;
