@@ -18,29 +18,30 @@ export default class Option extends Component {
     }
 
     handleClick( e ) {
-        const letter = e.target.value;
-        choosenLetter.push( letter );
-        const countIncrement = this.state.count;
-        const lastLetter = [...choosenLetter].pop();
-        choosen.push( this.state.countClick + letter );
+      const letter = e.target.value;
+      const lastLetter = choosenLetter.pop();
+      const countIncrement = this.state.count;
+        
+      if( this.state.countClick < 5 ) {
+          this.setState( { option: letter, countClick: this.state.countClick + 1 } )
 
-        if( this.state.countClick < 5 ) {
-            this.setState( { option: letter, countClick: this.state.countClick + 1 } )
+          if( letter === "A" && countIncrement + 1 === 1 || letter === "A" && lastLetter === "B" ) this.setState( { count: countIncrement + 1 } );
+          else if( letter === "A" && lastLetter === "A" || letter === "B" && lastLetter === "B" || letter === "B" && countIncrement + 1 === 1 ) this.setState( { count: countIncrement + 2 } );
+          else if( letter === "B" && lastLetter === "A" ) this.setState( { count: countIncrement + 3 } );
 
-            if( letter === "A" && countIncrement + 1 === 1 || letter === "A" && lastLetter === "B") this.setState( { count: countIncrement + 1 } )
-            else if( letter === "A" && lastLetter === "A" || letter === "B" && lastLetter === "B" || letter === "B" && countIncrement + 1 === 1 ) this.setState( { count: countIncrement + 2 } )
-            else if( letter === "B" && lastLetter === "A" ) this.setState( { count: countIncrement + 3 } );
-        } else {
-            Swal.fire({
-                title: 'Fin del juego',
-                showClass: {
-                  popup: 'animate__animated animate__fadeInDown'
-                },
-                hideClass: {
-                  popup: 'animate__animated animate__fadeOutUp'
-                }
-            } )
-        }
+          choosenLetter.push( letter );
+          choosen.push( this.state.countClick + letter );
+      } else {
+          Swal.fire({
+              title: 'Fin del juego',
+              showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+              },
+              hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+              }
+          } )
+      }
     }
 
     render( ) {
